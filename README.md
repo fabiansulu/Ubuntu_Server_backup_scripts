@@ -1,6 +1,7 @@
-bash
-#!/bin/bash
+SAUVEGARDE DES DOSSIERS (REPERTOIRES) D'UN SERVEUR UBUNTU
 
+Option 1 : SIMPLE RSYNC SCRIPT
+-------------------------
 # Sauvegarde de la liste des paquets installés
 dpkg --get-selections > /chemin/vers/destination/package-list.txt
 
@@ -18,3 +19,7 @@ Et dans la crontab (exécutée en root), il suffit de lancer le script réguliè
 
 text
 0 2 * * * /usr/local/bin/backup.sh
+
+
+Option 1 : En cours de test
+-------------------------
