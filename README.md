@@ -21,5 +21,5 @@ text
 0 2 * * * /usr/local/bin/backup.sh
 
 
-Option 1 : En cours de test
+Option 2 : En cours de test
 -------------------------
