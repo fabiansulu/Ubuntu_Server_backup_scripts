@@ -1,8 +1,23 @@
-bash
 #!/bin/bash
+# /usr/local/bin/backup.sh
+# Script de sauvegarde système + liste des paquets installés
+# Auteur : Authentik
+# Date : $(date +%Y-%m-%d)
 
-# Sauvegarde de la liste des paquets installés
-dpkg --get-selections > /chemin/vers/destination/package-list.txt
+set -euo pipefail  # Sécurité du script : stop en cas d'erreur
 
-# Sauvegarde des dossiers du système avec rsync en excluant les dossiers à ne pas copier
-rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} / /chemin/vers/destination/
+# === VARIABLES ===
+DEST="/chemin/vers/destination"   # Répertoire de destination de la sauvegarde
+PKG_LIST="$DEST/package-list.txt" # Fichier contenant la liste des paquets
+
+# === SAUVEGARDE LISTE DES PAQUETS ===
+echo "[INFO] Sauvegarde de la liste des paquets installés..."
+dpkg --get-selections > "$PKG_LIST"
+
+# === SAUVEGARDE SYSTEME VIA RSYNC ===
+echo "[INFO] Sauvegarde complète du système vers $DEST ..."
+rsync -aAXv \
+  --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} \
+  / "$DEST"
+
+echo "[OK] Sauvegarde terminée avec succès ($(date))"
