@@ -33,5 +33,19 @@ text
 0 2 * * * /usr/local/bin/backup.sh
 
 
-Option 2 : En cours de test
+Option 2 : Python script
 -------------------------
+Installation
+
+Sauvegarder le script :
+sudo nano /usr/local/bin/pull_backup.py
+
+(coller le code)
+Le rendre exécutable :
+sudo chmod +x /usr/local/bin/pull_backup.py
+
+Créer la tâche cron côté serveur de sauvegarde :
+sudo crontab -e
+
+et ajouter :
+0 2 * * * /usr/local/bin/pull_backup.py >> /var/log/pull-backup.log 2>&1
