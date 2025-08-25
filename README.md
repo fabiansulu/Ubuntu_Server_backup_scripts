@@ -1,7 +1,19 @@
 SAUVEGARDE DES DOSSIERS (REPERTOIRES) D'UN SERVEUR UBUNTU
+Par Authentik
 
 Option 1 : SIMPLE RSYNC SCRIPT
 -------------------------
+Étapes d’installation :
+
+Rends le script exécutable :
+sudo chmod +x /usr/local/bin/backup.sh
+
+Configure la crontab root pour lancer la sauvegarde tous les jours à 2h :
+sudo crontab -e
+
+et ajoute :
+0 2 * * * /usr/local/bin/backup.sh
+
 # Sauvegarde de la liste des paquets installés
 dpkg --get-selections > /chemin/vers/destination/package-list.txt
 
